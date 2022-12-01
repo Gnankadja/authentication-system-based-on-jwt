@@ -1,0 +1,11 @@
+{
+  "name": "authentication-system-based-on-jwt",
+  "version": "1.0.0",
+  "description": "Authenticate your users with jwt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nahtandev",
+  "license": "ISC"
+}
