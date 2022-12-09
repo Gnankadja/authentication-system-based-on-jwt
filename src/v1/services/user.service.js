@@ -132,6 +132,18 @@ const getOneUserWithEmail = async (userEmail) => {
     return user;
 }
 
+const getOneUserWithTelephone = async (userTelephone) => {
+    const user = await prisma.users.findFirst({
+        where: {
+            user_telephone: userTelephone
+        }
+    });
+
+    await prisma.$disconnect();
+    return user;
+}
+
+
 const getLastUser = async () => {
     const user = await prisma.users.findMany({
         orderBy: {
@@ -152,5 +164,6 @@ module.exports = {
     deleteOneUser,
     getOneUserWithReference,
     getOneUserWithEmail,
+    getOneUserWithTelephone,
     getLastUser
 }
