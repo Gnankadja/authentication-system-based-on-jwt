@@ -1,6 +1,6 @@
-# AUTHENTIFICATION SYSTEM BASED ON JWT
+# AUTHENTIFICATION APPLICATION BASED ON JWT
 
-A simple PDF Generator using Node.js
+Une application d'authentification basé sur Express & JWT
 
 ## REQUIREMENTS
 
