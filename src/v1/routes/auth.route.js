@@ -11,4 +11,7 @@ const auth = express.Router();
 
 
 // User registration routes
-auth.post("register", getRequestData, userRegister);
+auth.post("/register", getRequestData, userRegister);
+
+
+module.exports = auth;

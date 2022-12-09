@@ -27,8 +27,9 @@ app.use("/v1", v1);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
+    console.log(err);
     const statusCode = err.status || 500;
-    const message = (err.message && err.message.fr) || "Une erreur interne s'est produit; Veuillez réssayer plus tard";
+    const message = err.message || "Une erreur interne s'est produit; Veuillez réssayer plus tard";
     res.status(statusCode).json({ status: statusCode, message: message });
     return;
 });

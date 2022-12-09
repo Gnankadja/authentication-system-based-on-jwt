@@ -5,7 +5,7 @@ const getRequestData = (req, res, next) => {
         req.data = req.body.data;
         next();
     }
-    else next({ status: 400, msg: "Invalid data object" });
+    else next({ status: 400, message: "Invalid data object" });
 }
 
 module.exports = getRequestData;

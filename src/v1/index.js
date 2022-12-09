@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 // Routes
-// router.use("/auth", AuthRoute);
+router.use("/auth", AuthRoute);
 
 
 

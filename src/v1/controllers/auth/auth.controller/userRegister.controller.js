@@ -14,39 +14,39 @@ const { isValidEmail,
 const verifyRegistrationData = (req) => new Promise(async (resolve, reject) => {
     const data = req.data;
 
-    if (!data.firstName && !isTextOnly(data.firstName)) reject({ status: 400, msg: "Invalid or unavailable first name" });
+    if (!data.firstName || !isTextOnly(data.firstName)) reject({ status: 400, msg: "Invalid or unavailable first name" });
 
-    if (!data.lastName && !isTextOnlyAndSpace(data.lastName)) reject({ status: 400, msg: "Invalid or unavailable last name" });
+    if (!data.lastName || !isTextOnlyAndSpace(data.lastName)) reject({ status: 400, msg: "Invalid or unavailable last name" });
 
-    if (!data.countryPrefix && !Number.isInteger(data.countryPrefix)) reject({ status: 400, msg: "Invalid or unavailable country prefix" });
+    if (!data.countryPrefix || !Number.isInteger(data.countryPrefix)) reject({ status: 400, msg: "Invalid or unavailable country prefix" });
 
-    if (!data.telephone && !Number.isInteger(data.telephone)) reject({ status: 400, msg: "Invalid or unavailable telephone" });
+    if (!data.telephone || !Number.isInteger(data.telephone)) reject({ status: 400, msg: "Invalid or unavailable telephone" });
 
-    if (!data.email && isValidEmail(data.email)) reject({ status: 400, msg: "Invalid or unavailable email" });
+    if (!data.email || !isValidEmail(data.email)) reject({ status: 400, msg: "Invalid or unavailable email" });
 
-    if (!data.password && isValidPasswordFormat(data.password)) reject({ status: 400, msg: "Invalid or unavailable password" });
+    if (!data.password || !isValidPasswordFormat(data.password)) reject({ status: 400, msg: "Invalid or unavailable password" });
 
-    if (!data.department && isTextOnlyAndSpace(data.department)) reject({ status: 400, msg: "Invalid or unavailable department" });
+    if (!data.department || !isTextOnlyAndSpace(data.department)) reject({ status: 400, msg: "Invalid or unavailable department" });
 
-    if (!data.town && isTextOnlyAndSpace(data.town)) reject({ status: 400, msg: "Invalid or unavailable town" });
+    if (!data.town || !isTextOnlyAndSpace(data.town)) reject({ status: 400, msg: "Invalid or unavailable town" });
 
-    if (!data.district && isTextOnlyAndSpace(data.distric)) reject({ status: 400, msg: "Invalid or unavailable district" });
+    if (!data.district || !isTextOnlyAndSpace(data.distric)) reject({ status: 400, msg: "Invalid or unavailable district" });
 
-    if (!data.neighborhood && isTextOnlyAndSpace(data.neighborhood)) reject({ status: 400, msg: "Invalid or unavailable Neighborhood" });
+    if (!data.neighborhood || !isTextOnlyAndSpace(data.neighborhood)) reject({ status: 400, msg: "Invalid or unavailable Neighborhood" });
 
-    if (!data.typeIdDocument && isTextOnlyAndSpace(data.typeIdDocument)) reject({ status: 400, msg: "Invalid or unavailable Type ID Document" });
+    if (!data.typeIdDocument || !isTextOnlyAndSpace(data.typeIdDocument)) reject({ status: 400, msg: "Invalid or unavailable Type ID Document" });
 
-    if (!data.idDocumentNumber && isTextOnlyAndSpace(data.idDocumentNumber)) reject({ status: 400, msg: "Invalid or unavailable id document number" });
+    if (!data.idDocumentNumber || (data.idDocumentNumber.length <= 4)) reject({ status: 400, msg: "Invalid or unavailable id document number" });
 
-    if (!data.neighborhood && isTextOnlyAndSpace(data.neighborhood)) reject({ status: 400, msg: "Invalid or unavailable Neighborhood" });
+    if (!data.neighborhood || !isTextOnlyAndSpace(data.neighborhood)) reject({ status: 400, msg: "Invalid or unavailable Neighborhood" });
 
-    if (!data.address && isTextOnlyAndSpace(data.address)) reject({ status: 400, msg: "Invalid or unavailable address" });
+    if (!data.address || !isTextOnlyAndSpace(data.address)) reject({ status: 400, msg: "Invalid or unavailable address" });
 
-    if (!data.occupation && isTextOnlyAndSpace(data.occupation)) reject({ status: 400, msg: "Invalid or unavailable occupation" });
+    if (!data.occupation || !isTextOnlyAndSpace(data.occupation)) reject({ status: 400, msg: "Invalid or unavailable occupation" });
 
-    if (!data.birthday && isTextOnlyAndSpace(data.birthday)) reject({ status: 400, msg: "Invalid or unavailable birthday" });
+    if (!data.birthday || !isTextOnlyAndSpace(data.birthday)) reject({ status: 400, msg: "Invalid or unavailable birthday" });
 
-    if (!data.gender && isTextOnlyAndSpace(data.gender)) reject({ status: 400, msg: "Invalid or unavailable gender" });
+    if (!data.gender || !isTextOnlyAndSpace(data.gender)) reject({ status: 400, msg: "Invalid or unavailable gender" });
 
     // Check if user email is registred on database
     const emailIsUsed = await getOneUserWithEmail(data.email);
@@ -83,12 +83,13 @@ const userRegister = async (req, res, next) => {
             userBirthday: data.birthday,
             userDepartment: data.department,
             userDistrict: data.district,
+            userPassword: password,
             userEmail: data.email,
             userGender: data.gender,
             userNeighborhood: data.neighborhood,
             userNumberIdDocument: data.idDocumentNumber,
-            userOccupation: data.profession,
-            userTelephone: data.telephone,
+            userOccupation: data.occupation,
+            userTelephone: telephone,
             userTown: data.town,
             userTypeID: data.typeIdDocument,
             created_At: timeStamp(),
@@ -104,7 +105,7 @@ const userRegister = async (req, res, next) => {
             });
 
     }
-    catch (error) { console.error(error); next({ status: error.status, message: error.msg }) }
+    catch (error) { console.log(error); next({ status: error.status, message: error.msg }) }
 }
 
 module.exports = userRegister;

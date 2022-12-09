@@ -8,11 +8,11 @@ datasource db {
 }
 
 model users {
-  user_reference          Int     @id
+  user_reference          String  @id @db.VarChar(100)
   user_first_name         String? @db.VarChar(100)
   user_last_name          String? @db.VarChar(100)
-  user_telephone          String? @db.VarChar(100)
-  country_prefix          String? @db.VarChar(100)
+  user_telephone          Int?
+  country_prefix          Int?
   user_email              String? @db.VarChar(100)
   user_department         String? @db.VarChar(100)
   user_town               String? @db.VarChar(100)
@@ -22,9 +22,9 @@ model users {
   user_number_id_document String? @db.VarChar(100)
   user_address            String? @db.VarChar(100)
   user_profession         String? @db.VarChar(100)
-  user_birthday           Int?
+  user_birthday           String? @db.VarChar(10)
   user_gender             String? @db.VarChar(100)
-  created_at              String? @db.VarChar(100)
+  created_at              Int?
   user_password           String? @db.VarChar(3000)
 
   @@unique([user_email, user_telephone], map: "users_un")
