@@ -69,7 +69,7 @@ const userRegister = async (req, res, next) => {
         const createdAt = timeStamp();
 
         // Concat Prefix and telephone
-        const telephone = Number.parseInt(data.countryPrefix + "" + data.telephone);
+        const telephone = String(data.countryPrefix + "" + data.telephone);
 
         // Hash password
         const password = await bcrypt.hash(data.password, 10);

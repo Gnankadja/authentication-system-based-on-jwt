@@ -11,7 +11,7 @@ model users {
   user_reference          String  @id @db.VarChar(100)
   user_first_name         String? @db.VarChar(100)
   user_last_name          String? @db.VarChar(100)
-  user_telephone          Int?
+  user_telephone          String? @db.VarChar(10)
   country_prefix          Int?
   user_email              String? @db.VarChar(100)
   user_department         String? @db.VarChar(100)
