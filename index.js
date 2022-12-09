@@ -10,7 +10,7 @@ const DatabaseService = require("./src/v1/services/database.service.js");  //Try
 // Instantiation & Initialization
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.LISTEN_PORT || 3000;
 const corsOption = {
     origin: JSON.parse(process.env.ALLOW_LIST)
 }
