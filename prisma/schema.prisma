@@ -24,6 +24,8 @@ model users {
   user_profession         String? @db.VarChar(100)
   user_birthday           Int?
   user_gender             String? @db.VarChar(100)
+  created_at              String? @db.VarChar(100)
+  user_password           String? @db.VarChar(3000)
 
   @@unique([user_email, user_telephone], map: "users_un")
 }

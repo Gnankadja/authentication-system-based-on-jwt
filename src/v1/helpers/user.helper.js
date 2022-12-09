@@ -28,3 +28,7 @@ const generateUserReference = async () => {
     }
     catch (error) { throw new Error("An user reference generation error was observed; Please try again later") }
 }
+
+module.exports = {
+    generateUserReference
+}
