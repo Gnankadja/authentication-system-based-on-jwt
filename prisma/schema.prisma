@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  user_reference          Int     @id
+  user_first_name         String? @db.VarChar(100)
+  user_last_name          String? @db.VarChar(100)
+  user_telephone          String? @db.VarChar(100)
+  country_prefix          String? @db.VarChar(100)
+  user_email              String? @db.VarChar(100)
+  user_department         String? @db.VarChar(100)
+  user_town               String? @db.VarChar(100)
+  user_district           String? @db.VarChar(100)
+  user_neighborhood       String? @db.VarChar(100)
+  user_type_id            String? @db.VarChar(100)
+  user_number_id_document String? @db.VarChar(100)
+  user_address            String? @db.VarChar(100)
+  user_profession         String? @db.VarChar(100)
+  user_birthday           Int?
+  user_gender             String? @db.VarChar(100)
+
+  @@unique([user_email, user_telephone], map: "users_un")
+}
