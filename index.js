@@ -1,15 +1,19 @@
 // Dependencies
 const express = require('express');
+const cors = require("cors");
 const dotenv = require("dotenv");
 const v1 = require("./src/v1/index");
 const DatabaseService = require("./src/v1/services/database.service.js");  //Try connect to database to check if service is started succeful
 
 
 
-// Instantiation && Initiation
+// Instantiation & Initialization
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
+const corsOption = {
+    origin: JSON.parse(process.env.ALLOW_LIST)
+}
 
 // Middlewares
 app.use(express.json());

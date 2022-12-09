@@ -1,6 +1,6 @@
 // Dependencies
 const express = require("express");
-const AuthRoute = require("./routes/auth.route");
+// const AuthRoute = require("./routes/auth.route");
 
 
 
@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 // Routes
-router.use("/auth", AuthRoute);
+// router.use("/auth", AuthRoute);
 
 
 
