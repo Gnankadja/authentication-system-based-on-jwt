@@ -10,6 +10,7 @@ const createNewUser = async ({
     userFirstName,
     userLastName,
     userEmail,
+    userPassword,
     countryPrefix,
     userTelephone,
     userDepartment,
@@ -32,6 +33,7 @@ const createNewUser = async ({
             user_department: userDepartment,
             user_district: userDistrict,
             user_email: userEmail,
+            user_password: userPassword,
             user_first_name: userFirstName,
             user_last_name: userLastName,
             user_gender: userGender,
@@ -55,6 +57,7 @@ const updateOneUser = async ({
     userFirstName,
     userLastName,
     userEmail,
+    userPassword,
     countryPrefix,
     userTelephone,
     userDepartment,
@@ -78,6 +81,7 @@ const updateOneUser = async ({
             user_department: userDepartment,
             user_district: userDistrict,
             user_email: userEmail,
+            user_password: userPassword,
             user_first_name: userFirstName,
             user_last_name: userLastName,
             user_gender: userGender,
@@ -128,11 +132,25 @@ const getOneUserWithEmail = async (userEmail) => {
     return user;
 }
 
+const getLastUser = async () => {
+    const user = await prisma.users.findMany({
+        orderBy: {
+            created_at: 'desc'
+        },
+        take: 1
+    });
+
+    await prisma.$disconnect();
+    if (user.length === 1) return user[0];
+    else return null;
+}
+
 
 module.exports = {
     createNewUser,
     updateOneUser,
     deleteOneUser,
     getOneUserWithReference,
-    getOneUserWithEmail
+    getOneUserWithEmail,
+    getLastUser
 }
