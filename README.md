@@ -1,6 +1,6 @@
 # AUTHENTIFICATION APPLICATION BASED ON JWT
 
-Une application d'authentification basé sur Express & JWT
+An authentication application based on Express & JWT
 
 ## REQUIREMENTS
 
